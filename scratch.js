@@ -1,11 +1,7 @@
-
 //******u***** GLOBAL VARIABLES ******************//
 const secretNumber = Math.round((Math.random() * (100 - 0)));
-let newSecretNumber = 0;
 let count = 0
-let count2 = 0
 let guesses = []
-let guesses2 = []
 let name = ""
 let previousPlayers = {}
 let previousBestScore = 0;
@@ -62,57 +58,59 @@ function guessOnce() {
 }
 
 function goAgain() {
-  round++;
-  if (round < 3) { 
-  newSecretNumber = Math.round((Math.random() * (100 - 0)));
-  console.log("Secret number: " + newSecretNumber);
-  }
-  const input2 = prompt(`${name}, can you guess the secret number between 0 and 100?`);
-  
-  count2++;
-  guesses2.push(" " + input2);
-  console.log(input2);
-  previousBestScore = previousPlayers[`${name}`]
 
-  if ((input2) == newSecretNumber) {
-    if (count2 < previousBestScore) {
-      difference = previousBestScore - count2;
-      alert (`That\'s Correct ${name}, You got it in ${count2} attempts. This beats your previous best score by ${difference} fewer guesses`);
-      previousPlayers[`${name}`] = count2;
-      console.log("Best Score adjusted to: " + previousPlayers[`${name}`]);
-    }
-    else if (count2 > previousBestScore) {
-      difference = count2 - previousBestScore;
-      alert (`That\'s Correct ${name}, You got it in ${count2} attempts. You guessed ${difference} more guesses than your previous best score`);
+  for (let i = 2; i < Infinity; i++) {
+    round = i;
+    secretNumber${i} = Math.round((Math.random() * (100 - 0)));
+    console.log("Secret number: " + secretNumber${i});
+
+    let input = prompt(`${name}, can you guess the secret number between 0 and 100?`);
+    
+    count${i};
+    guesses${i}.push(" " + input);
+    console.log(input);
+    previousBestScore = previousPlayers[`${name}`]
+
+    if ((input) == newSecretNumber) {
+      if (count${i} < previousBestScore) {
+        difference = previousBestScore - count${i};
+        alert (`That\'s Correct ${name}, You got it in ${count${i}} attempts. This beats your previous best score by ${difference} fewer guesses`);
+        previousPlayers[`${name}`] = count${i};
+        console.log("Best Score adjusted to: " + previousPlayers[`${name}`]);
       }
-    else {
-        alert (`That\'s Correct ${name}, You got it in ${count2} attempts. This ties your previous best score.`);
-    }
-    alert(`${name}, your guesses for the round were: ${guesses2}`);
-    let playAgain = prompt(`${name}, Do you want to play again? Y or N`)
-    if (playAgain.toUpperCase() == "Y") {
-      alert("Sorry, I need to work on this some more for that");
-      return;
-    }
-    else {
-      return;
+      else if (count${i} > previousBestScore) {
+        difference = count${i} - previousBestScore;
+        alert (`That\'s Correct ${name}, You got it in ${count${i}} attempts. You guessed ${difference} more guesses than your previous best score`);
+        }
+      else {
+          alert (`That\'s Correct ${name}, You got it in ${count${i}} attempts. This ties your previous best score.`);
+      }
+      alert(`${name}, your guesses for round${i} were: ${guesses${i}}`);
+      let playAgain = prompt(`${name}, Do you want to play again? Y or N`)
+      if (playAgain.toUpperCase() == "Y") {
+        goAgain();
+      }
+      else {
+        return;
+      }
     }
 
-  }
-  else if ((input2) > newSecretNumber) {
-    alert(`Sorry ${name}, guess lower`);
-    goAgain();
-  }
-  else if ((input2) < newSecretNumber) {
-    alert(`Sorry ${name}, guess higher`);
-    goAgain();
-  }
-  else {
-    return alert(`${name}, please input a valid number`);
+    else if ((input) > newSecretNumber) {
+      alert(`Sorry ${name}, guess lower`);
+      goAgain();
+    }
+    else if ((input) < newSecretNumber) {
+      alert(`Sorry ${name}, guess higher`);
+      goAgain();
+    }
+    else {
+      return alert(`${name}, please input a valid number`);
+    }
   }
 }
 
 //****************** FUNCTION INVOKATION **************//
+guessOnce();
 
 //****************** NOTES **************//
 
@@ -157,3 +155,4 @@ function goAgain() {
 // cont. - performed asynchronously).
 // 6 - When to use parameters? Scope limitations or you dont know what the input (name (function) or value) on the function is going to be
 // 7 - use console.logs() everywhere to resolve issues/ errors 
+
